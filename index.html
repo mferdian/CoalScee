@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,13 +9,15 @@
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
     <!-- Icon -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar">
@@ -28,28 +31,62 @@
         </div>
 
         <div class="navbar-extra">
-            <a href="#" id="search"><i class="material-icons">search</i></a>
-            <a href="#" id="shopping-cart"><i class="material-icons">shopping_cart</i></a>
+            <a href="#" id="search-button"><i class="material-icons">search</i></a>
+            <a href="#" id="shopping-cart-button"><i class="material-icons">shopping_cart</i></a>
             <a href="#" id="menu"><i class="material-icons">menu</i></a>
         </div>
+
+        <!-- Search Form Start -->
+        <div class="search-form">
+            <input type="search" id="search-box" placeholder="search here...">
+            <label for="search-box"><i class="material-icons">search</i></label>
+        </div>
+        <!-- Search Form END -->
+        <div class="shopping-cart">
+            <div class="cart-item">
+                <img src="img/Chair2.jpg" alt="Chair2">
+                <div class="item-details">
+                    <h3>Chair 2</h3>
+                    <div class="item-price">Rp. 900.000</div>
+                </div>
+                <i class="material-icons" id="remove-item">delete</i>
+            </div>
+            <div class="cart-item">
+                <img src="img/Chair2.jpg" alt="Chair2">
+                <div class="item-details">
+                    <h3>Chair 2</h3>
+                    <div class="item-price">Rp. 900.000</div>
+                </div>
+                <i class="material-icons" id="remove-item">delete</i>
+            </div>
+            <div class="cart-item">
+                <img src="img/Chair2.jpg" alt="Chair2">
+                <div class="item-details">
+                    <h3>Chair 2</h3>
+                    <div class="item-price">Rp. 900.000</div>
+                </div>
+                <i class="material-icons" id="remove-item">delete</i>
+            </div>
+        </div>
+        <!-- Shopping Card -->
     </nav>
     <!-- Navbar END -->
 
 
     <!-- Hero Section -->
-     <section class="hero" id="home">
+    <section class="hero" id="home">
         <main class="content">
             <h1>Lorem ipsum dolor, sit <span>amet</span>
             </h1>
             <p>Lorem ipsum dolor sit amet consectetur</p>
             <a href="#" class="cta">Buy Now</a>
         </main>
-     </section>
+    </section>
     <!-- Hero Section END-->
 
 
     <!-- About Section-->
-     <section id="about" class="about">
+    <section id="about" class="about">
         <h2>About US</h2>
         <div class="row">
             <div class="about-img">
@@ -57,94 +94,156 @@
             </div>
             <div class="content">
                 <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga iste repellendus vero harum sapiente id expedita, tempora sit qui minus, nostrum eaque dignissimos doloribus sed soluta laborum quia nemo repudiandae.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga iste repellendus vero harum sapiente id
+                    expedita, tempora sit qui minus, nostrum eaque dignissimos doloribus sed soluta laborum quia nemo
+                    repudiandae.</p>
             </div>
-         </div>
-     </section>
+        </div>
+    </section>
     <!-- About Section END-->
 
 
     <!-- Product Section-->
-     <section id="product" class="product">
-        <h2>Product</h2>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci ad dignissimos mollitia molestias unde. Harum!</p>
+    <section id="product" class="products">
+        <h2>Products</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ad dignissimos mollitia molestias unde.</p>
 
         <div class="row">
-            <div class="product-cart">
-                <img src="img/Lamp1.jpg" alt="Lampu" class="product-cart-img">
-                <h3 class="product-cart-title">Lorem, ipsum dolor</h3>
-                <p class="product-cart-price">
-                    Rp. 150.000
-                </p>
-             </div>
-             <div class="product-cart">
-                <img src="img/Lamp2.jpg" alt="Lampu" class="product-cart-img">
-                <h3 class="product-cart-title">Lorem, ipsum dolor</h3>
-                <p class="product-cart-price">
-                    Rp. 150.000
-                </p>
+            <div class="product-card">
+                <div class="product-icons">
+                    <a href="#" aria-label="Add to Cart"><i class="material-icons">shopping_cart</i></a>
+                    <a href="#" aria-label="More Info" class="item-detail-button"><i class="material-icons">info</i></a>
+                </div>
+                <div class="product-image">
+                    <img src="img/Lamp1.jpg" alt="Lamp1 Image">
+                </div>
+                <div class="product-content">
+                    <h3>Lamp1</h3>
+                    <div class="product-like">
+                        <i class="material-icons">thumb_up</i>
+                    </div>
+                    <div class="product-stars">
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                    </div>
+                    <div class="product-price">Rp.900.000</div>
+                </div>
             </div>
-            <div class="product-cart">
-                <img src="img/Lamp3.jpg" alt="Lampu" class="product-cart-img">
-                <h3 class="product-cart-title">Lorem, ipsum dolor</h3>
-                <p class="product-cart-price">
-                    Rp. 150.000
-                </p>
+
+            <div class="product-card">
+                <div class="product-icons">
+                    <a href="#" aria-label="Add to Cart"><i class="material-icons">shopping_cart</i></a>
+                    <a href="#" aria-label="More Info" class="item-detail-button"><i class="material-icons">info</i></a>
+                </div>
+                <div class="product-image">
+                    <img src="img/Lamp1.jpg" alt="Lamp1 Image">
+                </div>
+                <div class="product-content">
+                    <h3>Lamp1</h3>
+                    <div class="product-like">
+                        <i class="material-icons">thumb_up</i>
+                    </div>
+                    <div class="product-stars">
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                    </div>
+                    <div class="product-price">Rp.900.000</div>
+                </div>
             </div>
-            <div class="product-cart">
-                <img src="img/Chair1.jpg" alt="Lampu" class="product-cart-img">
-                <h3 class="product-cart-title">Lorem, ipsum dolor</h3>
-                <p class="product-cart-price">
-                    Rp. 150.000
-                </p>
+            <div class="product-card">
+                <div class="product-icons">
+                    <a href="#" aria-label="Add to Cart"><i class="material-icons">shopping_cart</i></a>
+                    <a href="#" aria-label="More Info" class="item-detail-button"><i class="material-icons">info</i></a>
+                </div>
+                <div class="product-image">
+                    <img src="img/Lamp1.jpg" alt="Lamp1 Image">
+                </div>
+                <div class="product-content">
+                    <h3>Lamp1</h3>
+                    <div class="product-like">
+                        <i class="material-icons">thumb_up</i>
+                    </div>
+                    <div class="product-stars">
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                    </div>
+                    <div class="product-price">Rp.900.000</div>
+                </div>
             </div>
-            <div class="product-cart">
-                <img src="img/Chair2.jpg " alt="Lampu" class="product-cart-img">
-                <h3 class="product-cart-title">Lorem, ipsum dolor</h3>
-                <p class="product-cart-price">
-                    Rp. 150.000
-                </p>
+            <div class="product-card">
+                <div class="product-icons">
+                    <a href="#" aria-label="Add to Cart"><i class="material-icons">shopping_cart</i></a>
+                    <a href="#" aria-label="More Info" class="item-detail-button"><i class="material-icons">info</i></a>
+                </div>
+                <div class="product-image">
+                    <img src="img/Lamp1.jpg" alt="Lamp1 Image">
+                </div>
+                <div class="product-content">
+                    <h3>Lamp1</h3>
+                    <div class="product-like">
+                        <i class="material-icons">thumb_up</i>
+                    </div>
+                    <div class="product-stars">
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                    </div>
+                    <div class="product-price">Rp.900.000</div>
+                </div>
             </div>
         </div>
-     </section>
-
+    </section>
     <!-- Product Section END-->
 
 
     <!-- Contact Section -->
-<section id="contact" class="contact">
-    <h2>Contact</h2>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci ad dignissimos mollitia molestias unde. Harum!</p>
+    <section id="contact" class="contact">
+        <h2>Contact</h2>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci ad dignissimos mollitia molestias unde.
+            Harum!</p>
 
-    <div class="row">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.155368658936!2d112.71502029999996!3d-7.336442399999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fba9cfb6dfab%3A0x6fe7210ef241206!2sal-Akbar%20National%20Mosque%20Surabaya!5e0!3m2!1sen!2sid!4v1734259134040!5m2!1sen!2sid"allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map">
-        </iframe>
+        <div class="row">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.155368658936!2d112.71502029999996!3d-7.336442399999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fba9cfb6dfab%3A0x6fe7210ef241206!2sal-Akbar%20National%20Mosque%20Surabaya!5e0!3m2!1sen!2sid!4v1734259134040!5m2!1sen!2sid"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map">
+            </iframe>
 
-        <form action="">
-            <div class="input-group">
-                <i class="material-icons">person</i>
-                <input type="text" placeholder="name">
-            </div>
-            <div class="input-group">
-                <i class="material-icons">mail</i>
-                <input type="text" placeholder="e-mail">
-            </div>
-            <div class="input-group">
-                <i class="material-icons">call</i>
-                <input type="text" placeholder="Phone">
-            </div>
-            <button type="submit" class="btn">Send</button>
-        </form>
-    </div>
+            <form action="">
+                <div class="input-group">
+                    <i class="material-icons">person</i>
+                    <input type="text" placeholder="name">
+                </div>
+                <div class="input-group">
+                    <i class="material-icons">mail</i>
+                    <input type="text" placeholder="e-mail">
+                </div>
+                <div class="input-group">
+                    <i class="material-icons">call</i>
+                    <input type="text" placeholder="Phone">
+                </div>
+                <button type="submit" class="btn">Send</button>
+            </form>
+        </div>
 
-</section>
+    </section>
 
     <!-- Contact Section END -->
 
 
 
     <!-- Footer -->
-<footer>
+    <footer>
         <div class="socials">
             <a href="#"><i class="material-icons">photo_camera</i></a>
             <a href="#"><i class="material-icons">real_estate_agent</i></a>
@@ -162,9 +261,39 @@
         <div class="credit">
             <p>Create by <a href="">Eikha Poetra</a>. | &copy; 2024 </p>
         </div>
-     </footer>
+    </footer>
+
+    <!-- Modal Box-Item Details -->
+    <div class="modal" id="item-detail-modal">
+        <div class="modal-container">
+            <div class="modal-content">
+                <a href="#" class="close-modal"><i class="material-icons">cancel</i></a>
+                <img src="img/Chair2.jpg" alt="Chair2">
+                <div class="product-details">
+                    <h3>Product 2</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora vitae, sunt ipsam recusandae
+                        incidunt quibusdam omnis unde quod error debitis.</p>
+                    <div class="product-like">
+                        <i class="material-icons">thumb_up</i>
+                    </div>
+                    <div class="product-stars">
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                    </div>
+                    <div class="product-price">Rp.900.000</div>
+                    <a href="#" class="add-to-cart"><i class="material-icons">add_box</i> Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Box-Item Details  END-->
+
 
     <!-- JavaScript -->
     <script src="js/script.js"></script>
 </body>
+
 </html>
