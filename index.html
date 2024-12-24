@@ -16,11 +16,22 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" href="css/style.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <script src="src/app.js"></script>
 </head>
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar">
+    <nav class="navbar" x-data="{ formatters: { 
+        rupiah: (number) => {
+          return new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            minimumFractionDigits: 0
+          }).format(number);
+        }
+      } }">
         <a href="#" class="navbar-logo">Coal<span>Scee</span></a>
 
         <div class="navbar-nav">
@@ -32,7 +43,8 @@
 
         <div class="navbar-extra">
             <a href="#" id="search-button"><i class="material-icons">search</i></a>
-            <a href="#" id="shopping-cart-button"><i class="material-icons">shopping_cart</i></a>
+            <a href="#" id="shopping-cart-button"><i class="material-icons">shopping_cart</i><span
+                    class="quantity-badge" x-show="$store.cart.quantity" x-text="$store.cart.quantity">10</span></a>
             <a href="#" id="menu"><i class="material-icons">menu</i></a>
         </div>
 
@@ -42,33 +54,29 @@
             <label for="search-box"><i class="material-icons">search</i></label>
         </div>
         <!-- Search Form END -->
-        <div class="shopping-cart">
-            <div class="cart-item">
-                <img src="img/Chair2.jpg" alt="Chair2">
-                <div class="item-details">
-                    <h3>Chair 2</h3>
-                    <div class="item-price">Rp. 900.000</div>
+
+        <!-- Shopping Cart -->
+        <div class="shopping-cart" x-data="formatters">
+            <template x-for="(item, index) in $store.cart.items" :key="index">
+                <div class="cart-item">
+                    <img :src="item.img" :alt="item.name">
+                    <div class="item-detail">
+                        <h3 x-text="item.name"></h3>
+                        <div class="item-price">
+                            <span x-text="formatters.rupiah(item.price)"></span>&times;
+                            <button id="remove" @click="$store.cart.remove(item.id)">&minus;</button>
+                            <span x-text="item.quantity"></span>
+                            <button id="add" @click="$store.cart.add(item)">&plus;</button>&equals;
+                            <span x-text="formatters.rupiah(item.price)"></span>
+                        </div>
+                    </div>
                 </div>
-                <i class="material-icons" id="remove-item">delete</i>
-            </div>
-            <div class="cart-item">
-                <img src="img/Chair2.jpg" alt="Chair2">
-                <div class="item-details">
-                    <h3>Chair 2</h3>
-                    <div class="item-price">Rp. 900.000</div>
-                </div>
-                <i class="material-icons" id="remove-item">delete</i>
-            </div>
-            <div class="cart-item">
-                <img src="img/Chair2.jpg" alt="Chair2">
-                <div class="item-details">
-                    <h3>Chair 2</h3>
-                    <div class="item-price">Rp. 900.000</div>
-                </div>
-                <i class="material-icons" id="remove-item">delete</i>
-            </div>
+            </template>
+            <h4 x-show="!$store.cart.items.length">Cart is Empty</h4>
+            <h4 x-show="$store.cart.items.length">Total : <span x-text="rupiah(item.price)"></span></h4>
         </div>
-        <!-- Shopping Card -->
+        <!-- Shopping Cart END-->
+
     </nav>
     <!-- Navbar END -->
 
@@ -104,104 +112,38 @@
 
 
     <!-- Product Section-->
-    <section id="product" class="products">
+    <section id="product" class="products" x-data="products">
         <h2>Products</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ad dignissimos mollitia molestias unde.</p>
 
         <div class="row">
-            <div class="product-card">
-                <div class="product-icons">
-                    <a href="#" aria-label="Add to Cart"><i class="material-icons">shopping_cart</i></a>
-                    <a href="#" aria-label="More Info" class="item-detail-button"><i class="material-icons">info</i></a>
-                </div>
-                <div class="product-image">
-                    <img src="img/Lamp1.jpg" alt="Lamp1 Image">
-                </div>
-                <div class="product-content">
-                    <h3>Lamp1</h3>
-                    <div class="product-like">
-                        <i class="material-icons">thumb_up</i>
+            <template x-for="(item, index) in items" :key="index">
+                <div class="product-card">
+                    <div class="product-icons">
+                        <a href="#" aria-label="Add to Cart" @click.prevent="$store.cart.add(items)"><i
+                                class="material-icons">shopping_cart</i></a>
+                        <a href="#" aria-label="More Info" class="item-detail-button"><i
+                                class="material-icons">info</i></a>
                     </div>
-                    <div class="product-stars">
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
+                    <div class="product-image">
+                        <img :src="`${item.img}`" :alt="item.name">
                     </div>
-                    <div class="product-price">Rp.900.000</div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-icons">
-                    <a href="#" aria-label="Add to Cart"><i class="material-icons">shopping_cart</i></a>
-                    <a href="#" aria-label="More Info" class="item-detail-button"><i class="material-icons">info</i></a>
-                </div>
-                <div class="product-image">
-                    <img src="img/Lamp1.jpg" alt="Lamp1 Image">
-                </div>
-                <div class="product-content">
-                    <h3>Lamp1</h3>
-                    <div class="product-like">
-                        <i class="material-icons">thumb_up</i>
+                    <div class="product-content">
+                        <h3 x-text="item.name"></h3>
+                        <div class="product-like">
+                            <i class="material-icons">thumb_up</i>
+                        </div>
+                        <div class="product-stars">
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star</i>
+                        </div>
+                        <div class="product-price" x-text="rupiah(item.price)"></div>
                     </div>
-                    <div class="product-stars">
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                    </div>
-                    <div class="product-price">Rp.900.000</div>
                 </div>
-            </div>
-            <div class="product-card">
-                <div class="product-icons">
-                    <a href="#" aria-label="Add to Cart"><i class="material-icons">shopping_cart</i></a>
-                    <a href="#" aria-label="More Info" class="item-detail-button"><i class="material-icons">info</i></a>
-                </div>
-                <div class="product-image">
-                    <img src="img/Lamp1.jpg" alt="Lamp1 Image">
-                </div>
-                <div class="product-content">
-                    <h3>Lamp1</h3>
-                    <div class="product-like">
-                        <i class="material-icons">thumb_up</i>
-                    </div>
-                    <div class="product-stars">
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                    </div>
-                    <div class="product-price">Rp.900.000</div>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-icons">
-                    <a href="#" aria-label="Add to Cart"><i class="material-icons">shopping_cart</i></a>
-                    <a href="#" aria-label="More Info" class="item-detail-button"><i class="material-icons">info</i></a>
-                </div>
-                <div class="product-image">
-                    <img src="img/Lamp1.jpg" alt="Lamp1 Image">
-                </div>
-                <div class="product-content">
-                    <h3>Lamp1</h3>
-                    <div class="product-like">
-                        <i class="material-icons">thumb_up</i>
-                    </div>
-                    <div class="product-stars">
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                    </div>
-                    <div class="product-price">Rp.900.000</div>
-                </div>
-            </div>
+            </template>
         </div>
     </section>
     <!-- Product Section END-->
@@ -268,7 +210,7 @@
         <div class="modal-container">
             <div class="modal-content">
                 <a href="#" class="close-modal"><i class="material-icons">cancel</i></a>
-                <img src="img/Chair2.jpg" alt="Chair2">
+                <img src="img/2.jpg" alt="Chair2">
                 <div class="product-details">
                     <h3>Product 2</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora vitae, sunt ipsam recusandae
