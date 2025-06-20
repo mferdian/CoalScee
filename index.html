@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoalScee</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <script src="src/app.js"></script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" x-data="{ formatters: { 
+        rupiah: (number) => {
+          return new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            minimumFractionDigits: 0
+          }).format(number);
+        }
+      } }">
+        <a href="#" class="navbar-logo">Coal<span>Scee</span></a>
+
+        <div class="navbar-nav">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#product">Product</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+        <div class="navbar-extra">
+            <a href="#" id="search-button"><i class="material-icons">search</i></a>
+            <a href="#" id="shopping-cart-button"><i class="material-icons">shopping_cart</i><span
+                    class="quantity-badge" x-show="$store.cart.quantity" x-text="$store.cart.quantity">10</span></a>
+            <a href="#" id="menu"><i class="material-icons">menu</i></a>
+            <a href="#" id="account-button"><i class="material-icons">account_circle</i></a>
+        </div>
+
+        <!-- Search Form Start -->
+        <div class="search-form">
+            <input type="search" id="search-box" placeholder="search here...">
+            <label for="search-box"><i class="material-icons">search</i></label>
+        </div>
+        <!-- Search Form END -->
+
+        <!-- Shopping Cart -->
+        <div class="shopping-cart" x-data="formatters">
+            <template x-for="(item, index) in $store.cart.items" :key="index">
+                <div class="cart-item">
+                    <img :src="item.img" :alt="item.name">
+                    <div class="item-detail">
+                        <h3 x-text="item.name"></h3>
+                        <div class="item-price">
+                            <span x-text="formatters.rupiah(item.price)"></span>&times;
+                            <button id="remove" @click="$store.cart.remove(item.id)">&minus;</button>
+                            <span x-text="item.quantity"></span>
+                            <button id="add" @click="$store.cart.add(item)">&plus;</button>&equals;
+                            <span x-text="formatters.rupiah(item.price)"></span>
+                        </div>
+                    </div>
+                </div>
+            </template>
+            <h4 x-show="!$store.cart.items.length">Cart is Empty</h4>
+            <h4 x-show="$store.cart.items.length">Total : <span x-text="rupiah(item.price)"></span></h4>
+        </div>
+        <!-- Shopping Cart END-->
+
+    </nav>
+    <!-- Navbar END -->
+
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <main class="content">
+            <h1>CoalScee Furniture <span></span>
+            </h1>
+            <p>Make You Find Your Favorite Furniture</p>
+            <a href="#" class="cta">Buy Now</a>
+        </main>
+    </section>
+    <!-- Hero Section END-->
+
+
+    <!-- About Section-->
+    <section id="about" class="about">
+        <h2>About US</h2>
+        <div class="row">
+            <div class="about-img">
+                <img src="img/Company2.jpg" alt="About US">
+            </div>
+            <div class="content">
+                <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga iste repellendus vero harum sapiente id
+                    expedita, tempora sit qui minus, nostrum eaque dignissimos doloribus sed soluta laborum quia nemo
+                    repudiandae.</p>
+            </div>
+        </div>
+    </section>
+    <!-- About Section END-->
+
+
+    <!-- Product Section-->
+    <section id="product" class="products" x-data="products">
+        <h2>Products</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ad dignissimos mollitia molestias unde.</p>
+
+        <button class="btn-product"><a href="#">View All</a></button>
+
+
+
+        <div class="row">
+            <template x-for="(item, index) in items" :key="index">
+                <div class="product-card">
+                    <div class="product-icons">
+                        <a href="#" aria-label="Add to Cart" @click.prevent="$store.cart.add(items)"><i
+                                class="material-icons">shopping_cart</i></a>
+                        <a href="#" aria-label="More Info" class="item-detail-button"><i
+                                class="material-icons">info</i></a>
+                    </div>
+                    <div class="product-image">
+                        <img :src="`${item.img}`" :alt="item.name">
+                    </div>
+                    <div class="product-content">
+                        <h3 x-text="item.name"></h3>
+                        <div class="product-like">
+                            <i class="material-icons">thumb_up</i>
+                        </div>
+                        <div class="product-stars">
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star</i>
+                        </div>
+                        <div class="product-price" x-text="rupiah(item.price)"></div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </section>
+    <!-- Product Section END-->
+
+
+        <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact</h2>
+                <p>Kami siap membantu mewujudkan ruangan impian Anda</p>
+            </div>
+
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="material-icons">location_on</i>
+                        <div>
+                            <h3>Lokasi</h3>
+                            <p>Jl. Raya Kendangsari No.12, Surabaya</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="material-icons">phone</i>
+                        <div>
+                            <h3>Telepon</h3>
+                            <p>+62 821 187 23 1111</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="material-icons">email</i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>info@coalscee.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.155368658936!2d112.71502029999996!3d-7.336442399999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fba9cfab%3A0x6fe7210ef241206!2sal-Akbar%20National%20Mosque%20Surabaya!5e0!3m2!1sen!2sid!4v1734259134040!5m2!1sen!2sid"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map">
+                        </iframe>
+                    </div>
+                </div>
+
+                <form class="contact-form">
+                    <div class="form-group">
+                        <i class="material-icons">person</i>
+                        <input type="text" placeholder="Nama Lengkap">
+                    </div>
+                    <div class="form-group">
+                        <i class="material-icons">email</i>
+                        <input type="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <i class="material-icons">phone</i>
+                        <input type="tel" placeholder="Nomor Telepon">
+                    </div>
+                    <div class="form-group">
+                        <i class="material-icons">message</i>
+                        <textarea placeholder=""></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Kirim Pesan</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="#" class="logo">CoalScee</a>
+                <p>Menghadirkan furniture berkualitas dengan desain modern untuk menciptakan ruangan yang nyaman dan elegan.</p>
+                <div class="social-links">
+                    <a href="#"><i class="bx bxl-facebook"></i></a>
+                    <a href="#"><i class="bx bxl-instagram"></i></a>
+                    <a href="#"><i class="bx bxl-twitter"></i></a>
+                    <a href="#"><i class="bx bxl-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <div class="links-group">
+                    <h4>Produk</h4>
+                    <ul>
+                        <li><a href="#">Kursi</a></li>
+                        <li><a href="#">Meja</a></li>
+                        <li><a href="#">Sofa</a></li>
+                        <li><a href="#">Lemari</a></li>
+                        <li><a href="#">Tempat Tidur</a></li>
+                    </ul>
+                </div>
+
+                <div class="links-group">
+                    <h4>Layanan</h4>
+                    <ul>
+                        <li><a href="#">Konsultasi</a></li>
+                        <li><a href="#">Pengiriman</a></li>
+                        <li><a href="#">Instalasi</a></li>
+                        <li><a href="#">Garansi</a></li>
+                    </ul>
+                </div>
+
+                <div class="links-group">
+                    <h4>Newsletter</h4>
+                    <p>Dapatkan update terbaru dan penawaran spesial</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email Anda">
+                        <button type="submit"><i class="bx bx-send"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 CoalScee. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <!-- Modal Box-Item Details -->
+    <div class="modal" id="item-detail-modal">
+        <div class="modal-container">
+            <div class="modal-content">
+                <a href="#" class="close-modal"><i class="material-icons">cancel</i></a>
+                <img src="img/2.jpg" alt="Chair2">
+                <div class="product-details">
+                    <h3>Product 2</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora vitae, sunt ipsam recusandae
+                        incidunt quibusdam omnis unde quod error debitis.</p>
+                    <div class="product-like">
+                        <i class="material-icons">thumb_up</i>
+                    </div>
+                    <div class="product-stars">
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                    </div>
+                    <div class="product-price">Rp.900.000</div>
+                    <a href="#" class="add-to-cart"><i class="material-icons">add_box</i> Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Box-Item Details  END-->
+
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</body>
+
+</html>
